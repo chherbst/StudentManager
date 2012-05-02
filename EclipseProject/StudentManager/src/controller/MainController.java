@@ -25,9 +25,8 @@ public class MainController {
 		studentListModel.addStudent(student);
 	}
 
-	public void deleteStudent() {
-		// TODO Auto-generated method stub
-		
+	public void deleteStudent(int index) {
+		studentListModel.deleteStudent(index);
 	}
 
 	public void save() {

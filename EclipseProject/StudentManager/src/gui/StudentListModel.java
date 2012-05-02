@@ -33,4 +33,9 @@ public class StudentListModel extends AbstractListModel {
 		fireIntervalAdded(this, index, index);
 	}
 
+	public void deleteStudent(int index) {
+		studentCollection.getStudents().remove(index);
+		fireIntervalRemoved(this, index, index);
+	}
+
 }

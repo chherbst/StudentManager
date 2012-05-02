@@ -66,7 +66,7 @@ public class Application {
 		final JList studentList = new JList();
 		studentList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting())
+				if (e.getValueIsAdjusting() || studentList.getSelectedIndex() == -1)
 					return;
 				Student student = mainController.getStudent(studentList.getSelectedIndex());
 				tfName.setText(student.getName());
@@ -128,7 +128,7 @@ public class Application {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainController.deleteStudent();
+				mainController.deleteStudent(studentList.getSelectedIndex());
 			}
 		});
 		
