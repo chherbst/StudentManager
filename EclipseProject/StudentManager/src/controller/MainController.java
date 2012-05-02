@@ -25,8 +25,10 @@ public class MainController {
 		studentListModel.addStudent(student);
 	}
 	
-	public void editStudent(int student, String name, String lastName) {
-		studentListModel.editStudent(student, name, lastName);
+	public void editStudent(int studentIndex, String name, String lastName) {
+		if(studentIndex != -1) {
+			studentListModel.editStudent(studentIndex, name, lastName);
+		}
 	}
 
 	public void deleteStudent(int index) {
