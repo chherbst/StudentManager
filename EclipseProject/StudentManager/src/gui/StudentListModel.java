@@ -17,6 +17,13 @@ public class StudentListModel extends AbstractListModel {
 		this.studentCollection = studentCollection;
 	}
 	
+	public void updateModelSource(StudentCollection studentCollection) {
+		this.studentCollection.getStudents().clear(); 
+		fireIntervalRemoved(this, 0, studentCollection.getStudents().size()-1);
+		this.studentCollection = studentCollection;
+		fireIntervalAdded(this, 0, studentCollection.getStudents().size()-1);
+	}
+	
 	@Override
 	public int getSize() {
 		return studentCollection.getStudents().size();
@@ -38,7 +45,6 @@ public class StudentListModel extends AbstractListModel {
 		s.setName(name);
 		s.setLastName(lname);
 		fireContentsChanged(this, studentIndex, studentIndex);
-		
 	}
 
 	public void deleteStudent(int index) {

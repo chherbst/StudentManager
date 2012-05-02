@@ -6,8 +6,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -18,6 +20,9 @@ import controller.MainController;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class Application {
 
@@ -25,6 +30,7 @@ public class Application {
 	private JTextField tfName;
 	private JTextField tfLastName;
 	private MainController mainController;
+	final JFileChooser fc = new JFileChooser();
 
 	/**
 	 * Launch the application.
@@ -170,6 +176,39 @@ public class Application {
 		gbc_btnSave.gridx = 8;
 		gbc_btnSave.gridy = 4;
 		frame.getContentPane().add(btnSave, gbc_btnSave);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmOpen = new JMenuItem("Open");
+		mntmOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fc.setCurrentDirectory(new File("."));
+				int returnVal = fc.showOpenDialog(frame);
+
+			    if (returnVal == JFileChooser.APPROVE_OPTION) {
+			    	File file = fc.getSelectedFile();
+			    	mainController.loadFromFile(file.getName());
+			    	tfLastName.setText("");
+			    	tfName.setText("");
+			    } else {
+			    	System.out.println("Open command cancelled by user.");
+			    }
+			} 
+		});
+		mnFile.add(mntmOpen);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				System.exit(0);
+			}
+		});
+		mnFile.add(mntmExit);
 	}
 
 }

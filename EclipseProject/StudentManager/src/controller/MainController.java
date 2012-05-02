@@ -22,7 +22,7 @@ import DataModel.StudentCollection;
 public class MainController {
 	private StudentCollection studentCollection;
 	private StudentListModel studentListModel;
-	private static final String modelfile = "studentManager.students";
+	private String modelfile = "studentManager.students";
 	
 	public MainController() {
 		studentCollection = load();
@@ -70,6 +70,26 @@ public class MainController {
 		}
 	}
 
+	public void loadFromFile(String modelFile) {
+		this.setModelfile(modelFile);
+		studentCollection = load();
+		studentListModel.updateModelSource(studentCollection);
+	}
+	
+	/**
+	 * @return the modelfile
+	 */
+	public String getModelfile() {
+		return modelfile;
+	}
+
+	/**
+	 * @param modelfile the modelfile to set
+	 */
+	public void setModelfile(String modelfile) {
+		this.modelfile = modelfile;
+	}
+
 	private StudentCollection load() {
 		// Initialize the model
 		DataModelPackage.eINSTANCE.eClass();
@@ -86,8 +106,6 @@ public class MainController {
 		// Get the resource
 		StudentCollection studentCollection = null;
 		try {
-
-
 			Resource resource = resSet.getResource(URI
 					.createURI(modelfile), true);
 			// Get the first model element and cast it to the right type, in my
