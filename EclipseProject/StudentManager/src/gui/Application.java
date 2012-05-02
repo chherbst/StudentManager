@@ -81,6 +81,7 @@ public class Application {
 			}
 		});
 		studentList.setModel(mainController.getStudentModel());
+    	frame.setTitle(mainController.getModelfile());
 		GridBagConstraints gbc_studentList = new GridBagConstraints();
 		gbc_studentList.gridheight = 3;
 		gbc_studentList.insets = new Insets(0, 0, 5, 5);
@@ -192,6 +193,7 @@ public class Application {
 			    if (returnVal == JFileChooser.APPROVE_OPTION) {
 			    	File file = fc.getSelectedFile();
 			    	mainController.loadFromFile(file.getName());
+			    	frame.setTitle(mainController.getModelfile());
 			    	tfLastName.setText("");
 			    	tfName.setText("");
 			    } else {
