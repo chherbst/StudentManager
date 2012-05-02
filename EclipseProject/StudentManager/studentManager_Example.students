@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <DataModel:StudentCollection xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DataModel="http:///DataModel.ecore">
-  <students name="kalle" lastName="praller888"/>
-  <students name="kalle" lastName="praller999"/>
+  <students name="Max" lastName="Mustermann"/>
+  <students name="John" lastName="Doe"/>
 </DataModel:StudentCollection>
