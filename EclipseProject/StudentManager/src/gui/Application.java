@@ -151,6 +151,11 @@ public class Application {
 		frame.getContentPane().add(btnDelete, gbc_btnDelete);
 		
 		JButton btnApply = new JButton("Apply");
+		btnApply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mainController.editStudent(studentList.getSelectedIndex(), tfName.getText(), tfLastName.getText());
+			}
+		});
 		GridBagConstraints gbc_btnApply = new GridBagConstraints();
 		gbc_btnApply.insets = new Insets(0, 0, 0, 5);
 		gbc_btnApply.gridx = 7;

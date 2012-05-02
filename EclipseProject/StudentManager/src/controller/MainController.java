@@ -24,6 +24,10 @@ public class MainController {
 		student.setLastName(lastName);
 		studentListModel.addStudent(student);
 	}
+	
+	public void editStudent(int student, String name, String lastName) {
+		studentListModel.editStudent(student, name, lastName);
+	}
 
 	public void deleteStudent(int index) {
 		studentListModel.deleteStudent(index);
