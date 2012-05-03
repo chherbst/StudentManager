@@ -26,7 +26,7 @@ public class MainController {
 	
 	public MainController() {
 		studentCollection = load();
-		studentListModel = new StudentListModel(studentCollection);
+		studentListModel = new StudentListModel(studentCollection.getStudents());
 	}
 
 	private ResourceSet getRecourceSet() {
@@ -137,7 +137,7 @@ public class MainController {
 	public void loadFromFile(String modelFile) {
 		this.setModelfile(modelFile);
 		studentCollection = load();
-		studentListModel.setStudentCollection(studentCollection);
+		studentListModel.setStudents(studentCollection.getStudents());
 	}
 	
 	/**

@@ -1,9 +1,10 @@
 package gui;
 
+import java.util.List;
+
 import javax.swing.AbstractListModel;
 
 import DataModel.Student;
-import DataModel.StudentCollection;
 
 public class StudentListModel extends AbstractListModel {
 
@@ -11,25 +12,25 @@ public class StudentListModel extends AbstractListModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -2247374062666417439L;
-	private StudentCollection studentCollection;
+	private List<Student> students;
 
-	public StudentListModel(StudentCollection studentCollection) {
-		this.studentCollection = studentCollection;
+	public StudentListModel(List<Student> students) {
+		this.students = students;
 	}
 	
-	public void setStudentCollection(StudentCollection studentCollection) {
-		this.studentCollection = studentCollection;
-		fireContentsChanged(this, 0, studentCollection.getStudents().size());
+	public void setStudents(List<Student> students) {
+		this.students = students;
+		fireContentsChanged(this, 0, students.size());
 	}
 	
 	@Override
 	public int getSize() {
-		return studentCollection.getStudents().size();
+		return students.size();
 	}
 
 	@Override
 	public Student getElementAt(int index) {
-		return studentCollection.getStudents().get(index);
+		return students.get(index);
 	}
 
 	public void studentAdded(int index) {
