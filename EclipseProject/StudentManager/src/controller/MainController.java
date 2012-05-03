@@ -94,10 +94,7 @@ public class MainController {
 		return modelfile;
 	}
 
-	/**
-	 * @param modelfile the modelfile to set
-	 */
-	public void setModelfile(String modelfile) {
+	private void setModelfile(String modelfile) {
 		this.modelfile = modelfile;
 	}
 
