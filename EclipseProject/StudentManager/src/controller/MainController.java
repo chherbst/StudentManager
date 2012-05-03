@@ -46,13 +46,21 @@ public class MainController {
 		studentListModel.deleteStudent(index);
 	}
 
-	public void save() {
+	private ResourceSet getRecourceSet() {
+		// Initialize the model
+		DataModelPackage.eINSTANCE.eClass();
+
+		// Register the XMI resource factory for the .students extension
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("students", new XMIResourceFactoryImpl());
 
 		// Obtain a new resource set
-		ResourceSet resSet = new ResourceSetImpl();
+		return new ResourceSetImpl();
+	} 
+	
+	public void save() {
+		ResourceSet resSet = getRecourceSet();
 
 		// Create a resource
 		Resource resource = resSet.createResource(URI
@@ -91,17 +99,7 @@ public class MainController {
 	}
 
 	private StudentCollection load() {
-		// Initialize the model
-		DataModelPackage.eINSTANCE.eClass();
-		
-		// Register the XMI resource factory for the .students extension
-
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		Map<String, Object> m = reg.getExtensionToFactoryMap();
-		m.put("students", new XMIResourceFactoryImpl());
-
-		// Obtain a new resource set
-		ResourceSet resSet = new ResourceSetImpl();
+		ResourceSet resSet = getRecourceSet();
 
 		// Get the resource
 		StudentCollection studentCollection = null;
