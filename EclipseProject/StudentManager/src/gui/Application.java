@@ -127,7 +127,7 @@ public class Application {
 		tfLastName.setColumns(10);
 		
 		JButton btnSave = new JButton("Save");
-		btnSave.setIcon(new ImageIcon(Application.class.getResource("/gui/save_medium.png")));
+		btnSave.setIcon(new ImageIcon(Application.class.getResource("resources/save.png")));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.save();
@@ -135,7 +135,7 @@ public class Application {
 		});
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setIcon(new ImageIcon(Application.class.getResource("/gui/minus_medium.png")));
+		btnDelete.setIcon(new ImageIcon(Application.class.getResource("resources/minus.png")));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.deleteStudent(studentList.getSelectedIndex());
@@ -143,7 +143,7 @@ public class Application {
 		});
 		
 		JButton btnNew = new JButton("New");
-		btnNew.setIcon(new ImageIcon(Application.class.getResource("/gui/plus_medium.png")));
+		btnNew.setIcon(new ImageIcon(Application.class.getResource("resources/plus.png")));
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.createStudent(tfName.getText(), tfLastName.getText());
@@ -162,7 +162,7 @@ public class Application {
 		frame.getContentPane().add(btnDelete, gbc_btnDelete);
 		
 		JButton btnApply = new JButton("Apply");
-		btnApply.setIcon(new ImageIcon(Application.class.getResource("/gui/apply_medium.png")));
+		btnApply.setIcon(new ImageIcon(Application.class.getResource("resources/apply.png")));
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mainController.editStudent(studentList.getSelectedIndex(), tfName.getText(), tfLastName.getText());
