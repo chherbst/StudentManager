@@ -88,7 +88,9 @@ public class MainController {
 		Student student = DataModelFactory.eINSTANCE.createStudent();
 		student.setName(name);
 		student.setLastName(lastName);
-		studentListModel.addStudent(student);
+		studentCollection.getStudents().add(student);
+		int index = studentCollection.getStudents().indexOf(student);
+		studentListModel.studentAdded(index);
 	}
 
 	/**
@@ -113,7 +115,8 @@ public class MainController {
 	 * @param index
 	 */
 	public void deleteStudent(int index) {
-		studentListModel.deleteStudent(index);
+		studentCollection.getStudents().remove(index);
+		studentListModel.studentDeleted(index);
 	}
 
 	/**

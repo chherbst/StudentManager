@@ -32,14 +32,11 @@ public class StudentListModel extends AbstractListModel {
 		return studentCollection.getStudents().get(index);
 	}
 
-	public void addStudent(Student student) {
-		studentCollection.getStudents().add(student);
-		int index = studentCollection.getStudents().indexOf(student);
+	public void studentAdded(int index) {
 		fireIntervalAdded(this, index, index);
 	}
 
-	public void deleteStudent(int index) {
-		studentCollection.getStudents().remove(index);
+	public void studentDeleted(int index) {
 		fireIntervalRemoved(this, index, index);
 	}
 
