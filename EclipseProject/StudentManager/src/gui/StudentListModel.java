@@ -17,11 +17,9 @@ public class StudentListModel extends AbstractListModel {
 		this.studentCollection = studentCollection;
 	}
 	
-	public void updateModelSource(StudentCollection studentCollection) {
-		this.studentCollection.getStudents().clear(); 
-		fireIntervalRemoved(this, 0, studentCollection.getStudents().size()-1);
+	public void setStudentCollection(StudentCollection studentCollection) {
 		this.studentCollection = studentCollection;
-		fireIntervalAdded(this, 0, studentCollection.getStudents().size()-1);
+		fireContentsChanged(this, 0, studentCollection.getStudents().size());
 	}
 	
 	@Override

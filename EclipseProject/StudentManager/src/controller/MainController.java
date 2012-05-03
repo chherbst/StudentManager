@@ -84,7 +84,7 @@ public class MainController {
 	public void loadFromFile(String modelFile) {
 		this.setModelfile(modelFile);
 		studentCollection = load();
-		studentListModel.updateModelSource(studentCollection);
+		studentListModel.setStudentCollection(studentCollection);
 	}
 	
 	/**
