@@ -39,17 +39,14 @@ public class StudentListModel extends AbstractListModel {
 		int index = studentCollection.getStudents().indexOf(student);
 		fireIntervalAdded(this, index, index);
 	}
-	
-	public void editStudent(int studentIndex, String name, String lname) {
-		Student s = (Student)studentCollection.getStudents().get(studentIndex);
-		s.setName(name);
-		s.setLastName(lname);
-		fireContentsChanged(this, studentIndex, studentIndex);
-	}
 
 	public void deleteStudent(int index) {
 		studentCollection.getStudents().remove(index);
 		fireIntervalRemoved(this, index, index);
+	}
+
+	public void studentChanged(int index) {
+		fireContentsChanged(this, index, index);
 	}
 
 }

@@ -36,9 +36,12 @@ public class MainController {
 		studentListModel.addStudent(student);
 	}
 	
-	public void editStudent(int studentIndex, String name, String lastName) {
-		if(studentIndex != -1) {
-			studentListModel.editStudent(studentIndex, name, lastName);
+	public void editStudent(int index, String name, String lastName) {
+		if(index != -1) {
+			Student student = (Student)studentCollection.getStudents().get(index);
+			student.setName(name);
+			student.setLastName(lastName);
+			studentListModel.studentChanged(index);
 		}
 	}
 
