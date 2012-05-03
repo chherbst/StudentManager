@@ -29,26 +29,6 @@ public class MainController {
 		studentListModel = new StudentListModel(studentCollection);
 	}
 
-	public void createStudent(String name, String lastName) {
-		Student student = DataModelFactory.eINSTANCE.createStudent();
-		student.setName(name);
-		student.setLastName(lastName);
-		studentListModel.addStudent(student);
-	}
-	
-	public void editStudent(int index, String name, String lastName) {
-		if(index != -1) {
-			Student student = (Student)studentCollection.getStudents().get(index);
-			student.setName(name);
-			student.setLastName(lastName);
-			studentListModel.studentChanged(index);
-		}
-	}
-
-	public void deleteStudent(int index) {
-		studentListModel.deleteStudent(index);
-	}
-
 	private ResourceSet getRecourceSet() {
 		// Initialize the model
 		DataModelPackage.eINSTANCE.eClass();
@@ -81,23 +61,6 @@ public class MainController {
 		}
 	}
 
-	public void loadFromFile(String modelFile) {
-		this.setModelfile(modelFile);
-		studentCollection = load();
-		studentListModel.setStudentCollection(studentCollection);
-	}
-	
-	/**
-	 * @return the modelfile
-	 */
-	public String getModelfile() {
-		return modelfile;
-	}
-
-	private void setModelfile(String modelfile) {
-		this.modelfile = modelfile;
-	}
-
 	private StudentCollection load() {
 		ResourceSet resSet = getRecourceSet();
 
@@ -115,12 +78,82 @@ public class MainController {
 		return studentCollection;
 	}
 
-	public ListModel getStudentModel() {
-		return studentListModel;
+	/**
+	 * Create a new student
+	 * 
+	 * @param name
+	 * @param lastName
+	 */
+	public void createStudent(String name, String lastName) {
+		Student student = DataModelFactory.eINSTANCE.createStudent();
+		student.setName(name);
+		student.setLastName(lastName);
+		studentListModel.addStudent(student);
 	}
 
+	/**
+	 * Edit an existing student
+	 * 
+	 * @param index
+	 * @param name
+	 * @param lastName
+	 */
+	public void editStudent(int index, String name, String lastName) {
+		if(index != -1) {
+			Student student = (Student)studentCollection.getStudents().get(index);
+			student.setName(name);
+			student.setLastName(lastName);
+			studentListModel.studentChanged(index);
+		}
+	}
+
+	/**
+	 * Delete the student at the specified index
+	 * 
+	 * @param index
+	 */
+	public void deleteStudent(int index) {
+		studentListModel.deleteStudent(index);
+	}
+
+	/**
+	 * Get the student at the given index
+	 * 
+	 * @param index
+	 * @return
+	 */
 	public Student getStudent(int index) {
 		return studentListModel.getElementAt(index);
 	}
 
+	/**
+	 * Load all students from the given file
+	 * 
+	 * @param modelFile
+	 */
+	public void loadFromFile(String modelFile) {
+		this.setModelfile(modelFile);
+		studentCollection = load();
+		studentListModel.setStudentCollection(studentCollection);
+	}
+	
+	/**
+	 * @return the modelfile
+	 */
+	public String getModelfile() {
+		return modelfile;
+	}
+
+	private void setModelfile(String modelfile) {
+		this.modelfile = modelfile;
+	}
+
+	/**
+	 * Get a Listmodel containing all students
+	 * 
+	 * @return
+	 */
+	public ListModel getStudentModel() {
+		return studentListModel;
+	}
 }
