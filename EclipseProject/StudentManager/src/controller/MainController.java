@@ -102,7 +102,7 @@ public class MainController {
 	 */
 	public void editStudent(int index, String name, String lastName) {
 		if(index != -1) {
-			Student student = (Student)studentCollection.getStudents().get(index);
+			Student student = getStudent(index);
 			student.setName(name);
 			student.setLastName(lastName);
 			studentListModel.studentChanged(index);
@@ -126,7 +126,7 @@ public class MainController {
 	 * @return
 	 */
 	public Student getStudent(int index) {
-		return studentListModel.getElementAt(index);
+		return studentCollection.getStudents().get(index);
 	}
 
 	/**
