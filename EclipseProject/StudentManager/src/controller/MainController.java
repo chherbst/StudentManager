@@ -1,6 +1,6 @@
 package controller;
 
-import gui.StudentListModel;
+import gui.EObjectListModel;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -21,12 +21,12 @@ import DataModel.StudentCollection;
 
 public class MainController {
 	private StudentCollection studentCollection;
-	private StudentListModel studentListModel;
+	private EObjectListModel studentListModel;
 	private String modelfile = "studentManager.students";
 	
 	public MainController() {
 		studentCollection = load();
-		studentListModel = new StudentListModel(studentCollection.getStudents());
+		studentListModel = new EObjectListModel(studentCollection, DataModelPackage.eINSTANCE.getStudentCollection_Students());
 	}
 
 	private ResourceSet getRecourceSet() {
@@ -89,8 +89,6 @@ public class MainController {
 		student.setName(name);
 		student.setLastName(lastName);
 		studentCollection.getStudents().add(student);
-		int index = studentCollection.getStudents().indexOf(student);
-		studentListModel.studentAdded(index);
 	}
 
 	/**
@@ -102,10 +100,9 @@ public class MainController {
 	 */
 	public void editStudent(int index, String name, String lastName) {
 		if(index != -1) {
-			Student student = (Student)studentCollection.getStudents().get(index);
+			Student student = getStudent(index);
 			student.setName(name);
 			student.setLastName(lastName);
-			studentListModel.studentChanged(index);
 		}
 	}
 
@@ -116,7 +113,6 @@ public class MainController {
 	 */
 	public void deleteStudent(int index) {
 		studentCollection.getStudents().remove(index);
-		studentListModel.studentDeleted(index);
 	}
 
 	/**
@@ -126,7 +122,7 @@ public class MainController {
 	 * @return
 	 */
 	public Student getStudent(int index) {
-		return studentListModel.getElementAt(index);
+		return studentCollection.getStudents().get(index);
 	}
 
 	/**
@@ -137,7 +133,7 @@ public class MainController {
 	public void loadFromFile(String modelFile) {
 		this.setModelfile(modelFile);
 		studentCollection = load();
-		studentListModel.setStudents(studentCollection.getStudents());
+		studentListModel.setEObject(studentCollection);
 	}
 	
 	/**
