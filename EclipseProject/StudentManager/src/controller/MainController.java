@@ -1,12 +1,12 @@
 package controller;
 
-import gui.StudentListModel;
+import gui.StudentTableModel;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.swing.ListModel;
+import javax.swing.table.TableModel;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,12 +21,12 @@ import DataModel.StudentCollection;
 
 public class MainController {
 	private StudentCollection studentCollection;
-	private StudentListModel studentListModel;
+	private StudentTableModel studentTableModel;
 	private String modelfile = "studentManager.students";
 	
 	public MainController() {
 		studentCollection = load();
-		studentListModel = new StudentListModel(studentCollection.getStudents());
+		studentTableModel = new StudentTableModel(studentCollection.getStudents());
 	}
 
 	private ResourceSet getRecourceSet() {
@@ -90,7 +90,7 @@ public class MainController {
 		student.setLastName(lastName);
 		studentCollection.getStudents().add(student);
 		int index = studentCollection.getStudents().indexOf(student);
-		studentListModel.studentAdded(index);
+		studentTableModel.studentAdded(index);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class MainController {
 			Student student = getStudent(index);
 			student.setName(name);
 			student.setLastName(lastName);
-			studentListModel.studentChanged(index);
+			studentTableModel.studentChanged(index);
 		}
 	}
 
@@ -116,7 +116,7 @@ public class MainController {
 	 */
 	public void deleteStudent(int index) {
 		studentCollection.getStudents().remove(index);
-		studentListModel.studentDeleted(index);
+		studentTableModel.studentDeleted(index);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class MainController {
 	public void loadFromFile(String modelFile) {
 		this.setModelfile(modelFile);
 		studentCollection = load();
-		studentListModel.setStudents(studentCollection.getStudents());
+		studentTableModel.setStudents(studentCollection.getStudents());
 	}
 	
 	/**
@@ -156,7 +156,7 @@ public class MainController {
 	 * 
 	 * @return
 	 */
-	public ListModel getStudentModel() {
-		return studentListModel;
+	public TableModel getStudentModel() {
+		return studentTableModel;
 	}
 }

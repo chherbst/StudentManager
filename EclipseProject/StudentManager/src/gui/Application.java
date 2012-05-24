@@ -8,21 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import DataModel.Student;
 import controller.MainController;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 
 public class Application {
 
@@ -70,16 +67,16 @@ public class Application {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		final JList studentList = new JList();
-		studentList.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				if (e.getValueIsAdjusting() || studentList.getSelectedIndex() == -1)
-					return;
-				Student student = mainController.getStudent(studentList.getSelectedIndex());
-				tfName.setText(student.getName());
-				tfLastName.setText(student.getLastName());
-			}
-		});
+		final JTable studentList = new JTable();
+//		studentList.addListSelectionListener(new ListSelectionListener() {
+//			public void valueChanged(ListSelectionEvent e) {
+//				if (e.getValueIsAdjusting() || studentList.getSelectedIndex() == -1)
+//					return;
+//				Student student = mainController.getStudent(studentList.getSelectedIndex());
+//				tfName.setText(student.getName());
+//				tfLastName.setText(student.getLastName());
+//			}
+//		});
 		studentList.setModel(mainController.getStudentModel());
     	frame.setTitle(mainController.getModelfile());
 		GridBagConstraints gbc_studentList = new GridBagConstraints();
@@ -138,7 +135,7 @@ public class Application {
 		btnDelete.setIcon(new ImageIcon(Application.class.getResource("resources/minus.png")));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainController.deleteStudent(studentList.getSelectedIndex());
+				mainController.deleteStudent(studentList.getSelectedRow());
 			}
 		});
 		
@@ -165,7 +162,7 @@ public class Application {
 		btnApply.setIcon(new ImageIcon(Application.class.getResource("resources/apply.png")));
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mainController.editStudent(studentList.getSelectedIndex(), tfName.getText(), tfLastName.getText());
+				mainController.editStudent(studentList.getSelectedRow(), tfName.getText(), tfLastName.getText());
 			}
 		});
 		GridBagConstraints gbc_btnApply = new GridBagConstraints();
